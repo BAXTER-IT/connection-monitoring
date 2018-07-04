@@ -1,0 +1,53 @@
+<!-- Use this file to deploy some handlers/chains and services      -->
+<!-- Two ways to do this:                                           -->
+<!--   java org.apache.axis.client.AdminClient deploy.wsdd          -->
+<!--      after the axis server is running                          -->
+<!-- or                                                             -->
+<!--   java org.apache.axis.utils.Admin client|server deploy.wsdd   -->
+<!--      from the same directory that the Axis engine runs         -->
+
+<deployment
+    xmlns="http://xml.apache.org/axis/wsdd/"
+    xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+
+  <!-- Services from LPMonitorService WSDL service -->
+
+  <service name="LPMonitor" provider="java:RPC" style="wrapped" use="literal">
+      <parameter name="wsdlTargetNamespace" value="http://lpm.baxter.com"/>
+      <parameter name="wsdlServiceElement" value="LPMonitorService"/>
+      <parameter name="schemaQualified" value="http://lpm.baxter.com"/>
+      <parameter name="wsdlServicePort" value="LPMonitor"/>
+      <parameter name="className" value="com.baxter.lpm.LPMonitorSoapBindingImpl"/>
+      <parameter name="wsdlPortType" value="LPMonitor"/>
+      <parameter name="typeMappingVersion" value="1.2"/>
+      <operation name="log" qname="operNS:log" xmlns:operNS="http://lpm.baxter.com" soapAction="" >
+        <parameter qname="pns:className" xmlns:pns="http://lpm.baxter.com" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:type" xmlns:pns="http://lpm.baxter.com" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:msg" xmlns:pns="http://lpm.baxter.com" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="getMap" qname="operNS:getMap" xmlns:operNS="http://lpm.baxter.com" returnQName="retNS:getMapReturn" xmlns:retNS="http://lpm.baxter.com" returnType="rtns:LPConnection" xmlns:rtns="http://lpm.baxter.com" soapAction="" >
+      </operation>
+      <operation name="getConnection" qname="operNS:getConnection" xmlns:operNS="http://lpm.baxter.com" returnQName="retNS:getConnectionReturn" xmlns:retNS="http://lpm.baxter.com" returnType="rtns:string" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="pns:lp" xmlns:pns="http://lpm.baxter.com" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="setConnection" qname="operNS:setConnection" xmlns:operNS="http://lpm.baxter.com" soapAction="" >
+        <parameter qname="pns:lp" xmlns:pns="http://lpm.baxter.com" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:ip" xmlns:pns="http://lpm.baxter.com" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:port" xmlns:pns="http://lpm.baxter.com" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:pcName" xmlns:pns="http://lpm.baxter.com" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="removeConnection" qname="operNS:removeConnection" xmlns:operNS="http://lpm.baxter.com" soapAction="" >
+        <parameter qname="pns:lp" xmlns:pns="http://lpm.baxter.com" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <parameter name="allowedMethods" value="getConnection log removeConnection setConnection getMap"/>
+
+      <typeMapping
+        xmlns:ns="http://lpm.baxter.com"
+        qname="ns:LPConnection"
+        type="java:com.baxter.lpm.LPConnection"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+  </service>
+</deployment>

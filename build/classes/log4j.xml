@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">
+
+	<appender name="FILE" class="org.apache.log4j.RollingFileAppender">
+		<param name="MaxFileSize" value="5MB" />
+		<param name="MaxBackupIndex" value="10" />
+		<param name="File" value="/var/log/lpmonitor.log" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%c[%d{ISO8601}][%p] - %m%n" />
+		</layout>
+	</appender>
+
+	<logger name="com.baxter.lpm.LPMonitor">
+		<level value="DEBUG" />
+		<appender-ref ref="FILE" />
+	</logger>
+
+	<logger name="com.baxter.lpm.LPConnection">
+		<level value="DEBUG" />
+		<appender-ref ref="FILE" />
+	</logger>
+
+</log4j:configuration>

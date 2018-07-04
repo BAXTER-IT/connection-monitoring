@@ -1,0 +1,329 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="http://lpm.baxter.com" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="http://lpm.baxter.com" xmlns:intf="http://lpm.baxter.com" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<!--WSDL created by Apache Axis version: 1.4
+Built on Apr 22, 2006 (06:55:48 PDT)-->
+ <wsdl:types>
+  <schema elementFormDefault="qualified" targetNamespace="http://lpm.baxter.com" xmlns="http://www.w3.org/2001/XMLSchema">
+   <element name="log">
+    <complexType>
+     <sequence>
+      <element name="className" type="xsd:string"/>
+      <element name="type" type="xsd:string"/>
+      <element name="msg" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="logResponse">
+    <complexType/>
+   </element>
+   <element name="getMap">
+    <complexType/>
+   </element>
+   <element name="getMapResponse">
+    <complexType>
+     <sequence>
+      <element maxOccurs="unbounded" name="getMapReturn" type="impl:LPConnection"/>
+     </sequence>
+    </complexType>
+   </element>
+   <complexType name="LPConnection">
+    <sequence>
+     <element name="date" nillable="true" type="xsd:dateTime"/>
+     <element name="dateString" nillable="true" type="xsd:string"/>
+     <element name="ip" nillable="true" type="xsd:string"/>
+     <element name="lp" nillable="true" type="xsd:string"/>
+     <element name="pcName" nillable="true" type="xsd:string"/>
+     <element name="port" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <element name="getConnection">
+    <complexType>
+     <sequence>
+      <element name="lp" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getConnectionResponse">
+    <complexType>
+     <sequence>
+      <element name="getConnectionReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="setConnection">
+    <complexType>
+     <sequence>
+      <element name="lp" type="xsd:string"/>
+      <element name="ip" type="xsd:string"/>
+      <element name="port" type="xsd:string"/>
+      <element name="pcName" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="setConnectionResponse">
+    <complexType/>
+   </element>
+   <element name="removeConnection">
+    <complexType>
+     <sequence>
+      <element name="lp" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="removeConnectionResponse">
+    <complexType/>
+   </element>
+  </schema>
+ </wsdl:types>
+
+   <wsdl:message name="getMapResponse">
+
+      <wsdl:part element="impl:getMapResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getConnectionRequest">
+
+      <wsdl:part element="impl:getConnection" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getConnectionResponse">
+
+      <wsdl:part element="impl:getConnectionResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="setConnectionResponse">
+
+      <wsdl:part element="impl:setConnectionResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="logResponse">
+
+      <wsdl:part element="impl:logResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="removeConnectionResponse">
+
+      <wsdl:part element="impl:removeConnectionResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="setConnectionRequest">
+
+      <wsdl:part element="impl:setConnection" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getMapRequest">
+
+      <wsdl:part element="impl:getMap" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="logRequest">
+
+      <wsdl:part element="impl:log" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="removeConnectionRequest">
+
+      <wsdl:part element="impl:removeConnection" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:portType name="LPMonitor">
+
+      <wsdl:operation name="log">
+
+         <wsdl:input message="impl:logRequest" name="logRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:logResponse" name="logResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getMap">
+
+         <wsdl:input message="impl:getMapRequest" name="getMapRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:getMapResponse" name="getMapResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getConnection">
+
+         <wsdl:input message="impl:getConnectionRequest" name="getConnectionRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:getConnectionResponse" name="getConnectionResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="setConnection">
+
+         <wsdl:input message="impl:setConnectionRequest" name="setConnectionRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:setConnectionResponse" name="setConnectionResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="removeConnection">
+
+         <wsdl:input message="impl:removeConnectionRequest" name="removeConnectionRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:removeConnectionResponse" name="removeConnectionResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:portType>
+
+   <wsdl:binding name="LPMonitorSoapBinding" type="impl:LPMonitor">
+
+      <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+      <wsdl:operation name="log">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="logRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="logResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getMap">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getMapRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getMapResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getConnection">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getConnectionRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getConnectionResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="setConnection">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="setConnectionRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="setConnectionResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="removeConnection">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="removeConnectionRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="removeConnectionResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:binding>
+
+   <wsdl:service name="LPMonitorService">
+
+      <wsdl:port binding="impl:LPMonitorSoapBinding" name="LPMonitor">
+
+         <wsdlsoap:address location="http://localhost:8080/lpmonitor/services/LPMonitor"/>
+
+      </wsdl:port>
+
+   </wsdl:service>
+
+</wsdl:definitions>
